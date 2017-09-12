@@ -11,17 +11,18 @@ class Bot:
         self.browser = webdriver.Firefox(executable_path='./geckodriver')
         # self.browser = webdriver.Chrome('./chromedriver')
         self.prices = []
-        self.run()
+        self.Run()
 
-    def run(self):
+    def Run(self):
         try:
-            self.search()
-            self.findPrices()
+            self.Search()
+            self.FindPrices()
+            self.SendText()
         except Exception as ex:
             print(ex)
             self.browser.quit()
 
-    def search(self):
+    def Search(self):
         self.browser.get('https://www.google.com/flights/');
         departure_city = "COU"
         destination_city = "HND"
@@ -32,16 +33,18 @@ class Bot:
         departure_take_off_boxes[0].send_keys(departure_city)
         departure_take_off_boxes[0].send_keys(Keys.RETURN)
         time.sleep(1)
+        self.browser.implicitly_wait(10)
         departure_take_off_boxes[1].send_keys(destination_city)
         departure_take_off_boxes[1].send_keys(Keys.RETURN)
         time.sleep(1)
 
-    def findPrices(self):
+    def FindPrices(self):
         self.browser.implicitly_wait(10) 
         self.prices = self.browser.execute_script(
             "return document.querySelectorAll('.EIGTDNC-d-bc')")
         print(self.prices)
 
-
+    def SendText(self):
+        print('text will go here')
 
 Bot()
