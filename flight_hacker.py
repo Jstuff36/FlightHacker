@@ -12,17 +12,17 @@ class Bot:
         self.browser = webdriver.Chrome('./chromedriver')
         self.departure_city = "COU"
         self.destination_city = "HND"
-        self.departure_day = "December 1"
-        self.return_day = "December 10"
+        self.departure_day = "March 1"
+        self.return_day = "March 10"
         self.prices = []
         self.Run()
 
     def Run(self):
         try:
             self.SetFlight()
-            self.SetDates()
-            self.FindPrices()
-            self.SendText()
+            # self.SetDates()
+            # self.FindPrices()
+            # self.SendText()
             time.sleep(10)
             self.browser.quit()
 
@@ -32,18 +32,18 @@ class Bot:
             self.browser.quit()
 
     def SetFlight(self):
-        self.browser.get('https://www.google.com/flights/');
-        departure_take_off_boxes = self.browser.execute_script(
-            "return document.querySelectorAll('.EIGTDNC-Kb-f.EIGTDNC-Kb-b')")
-        print(departure_take_off_boxes[0].get_attribute('outerHTML'))
-        print(departure_take_off_boxes[1].get_attribute('outerHTML'))
-        self.browser.implicitly_wait(20)
-        departure_take_off_boxes[0].send_keys(self.departure_city)
-        departure_take_off_boxes[0].send_keys(Keys.RETURN)
-        time.sleep(1)
-        # departure_take_off_boxes[1].send_keys(self.destination_city)
-        # departure_take_off_boxes[1].send_keys(Keys.RETURN)
-        time.sleep(1)
+        self.browser.get('https://www.google.com/flights/beta');
+        # departure_take_off_boxes = self.browser.execute_script(
+        #     "return document.querySelectorAll('.EIGTDNC-Kb-f.EIGTDNC-Kb-b')")
+        # print(departure_take_off_boxes[0].get_attribute('outerHTML'))
+        # print(departure_take_off_boxes[1].get_attribute('outerHTML'))
+        # self.browser.implicitly_wait(20)
+        # departure_take_off_boxes[0].send_keys(self.departure_city)
+        # departure_take_off_boxes[0].send_keys(Keys.RETURN)
+        # time.sleep(1)
+        # # departure_take_off_boxes[1].send_keys(self.destination_city)
+        # # departure_take_off_boxes[1].send_keys(Keys.RETURN)
+        # time.sleep(1)
 
     def SetDates(self):
         departure_take_off_dates = self.browser.execute_script(
