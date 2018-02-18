@@ -10,8 +10,8 @@ class Bot:
     def __init__(self):
         # self.browser = webdriver.Firefox(executable_path='./geckodriver')
         self.browser = webdriver.Chrome('./chromedriver')
-        self.departure_city = "COU"
-        self.destination_city = "HND"
+        self.departure_airport = "COU"
+        self.destination_airport = "HND"
         self.departure_day = "March 1"
         self.return_day = "March 10"
         self.prices = []
@@ -23,8 +23,8 @@ class Bot:
             # self.SetDates()
             # self.FindPrices()
             # self.SendText()
-            time.sleep(10)
-            self.browser.quit()
+            # time.sleep(10)
+            # self.browser.quit()
 
             
         except Exception as ex:
@@ -32,16 +32,15 @@ class Bot:
             self.browser.quit()
 
     def SetFlight(self):
-        self.browser.get('https://www.google.com/flights/beta');
-        # departure_take_off_boxes = self.browser.execute_script(
-        #     "return document.querySelectorAll('.EIGTDNC-Kb-f.EIGTDNC-Kb-b')")
-        # print(departure_take_off_boxes[0].get_attribute('outerHTML'))
-        # print(departure_take_off_boxes[1].get_attribute('outerHTML'))
-        # self.browser.implicitly_wait(20)
-        # departure_take_off_boxes[0].send_keys(self.departure_city)
-        # departure_take_off_boxes[0].send_keys(Keys.RETURN)
-        # time.sleep(1)
-        # # departure_take_off_boxes[1].send_keys(self.destination_city)
+        self.browser.get('https://www.kayak.com/')
+        self.browser.implicitly_wait(20)
+        departure_take_off_boxes = self.browser.execute_script(
+            "return document.querySelectorAll('.gws-flights-form__input-target')")
+        print(departure_input)
+        # departure_input.send_keys(self.departure_airport)
+
+        time.sleep(1)
+        # # departure_take_off_boxes[1].send_keys(self.destination_airport)
         # # departure_take_off_boxes[1].send_keys(Keys.RETURN)
         # time.sleep(1)
 
